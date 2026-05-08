@@ -1,6 +1,4 @@
-# RICH3 雙人對戰 - Render.com 部署設定
-# 免費方案即可支援 WebSocket！
-
+# RICH3 雙人對戰 - Render.com 部署
 services:
   - type: web
     name: rich3-duel
@@ -8,7 +6,12 @@ services:
     region: singapore
     plan: free
     branch: main
-    buildCommand: pip install websockets
+    buildCommand: pip install -r requirements.txt
     startCommand: python rich3_deploy.py
     healthCheckPath: /
     autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: PYTHONUNBUFFERED
+        value: "1"
